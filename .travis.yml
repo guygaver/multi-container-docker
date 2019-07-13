@@ -11,16 +11,16 @@ script:
 
 # build the production images and push to docker
 after_success: 
-  - docker build -t guygaver/fibonacci-react-client ./client
-  - docker build -t guygaver/fibonacci-nginx ./nginx
-  - docker build -t guygaver/fibonacci-node-server ./server
-  - docker build -t guygaver/fibonacci-redis-worker ./worker
+  - docker build -t $DOCKER_USER/fibonacci-react-client ./client
+  - docker build -t $DOCKER_USER/fibonacci-nginx ./nginx
+  - docker build -t $DOCKER_USER/fibonacci-node-server ./server
+  - docker build -t $DOCKER_USER/fibonacci-redis-worker ./worker
   
   # login to docker cli by using a pipe operation - pass flag at end to insert password
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
 
   # push images to docker hub
-  - docker push guygaver/fibonacci-react-client
-  - docker push guygaver/fibonacci-nginx
-  - docker push guygaver/fibonacci-node-server
-  - docker push guygaver/fibonacci-redis-worker
+  - docker push $DOCKER_USER/fibonacci-react-client
+  - docker push $DOCKER_USER/fibonacci-nginx
+  - docker push $DOCKER_USER/fibonacci-node-server
+  - docker push $DOCKER_USER/fibonacci-redis-worker
