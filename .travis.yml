@@ -24,3 +24,18 @@ after_success:
   - docker push $DOCKER_USER/fibonacci-nginx
   - docker push $DOCKER_USER/fibonacci-node-server
   - docker push $DOCKER_USER/fibonacci-redis-worker
+
+# deploy instructions for elasticbeanstalk
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "Fibonacci Calculator"
+  env: "FibonacciCalculator-env"
+  bucket_name: "elasticbeanstalk-us-east-1-903881244030"
+  bucket_path: "fibonacci" # should be same as app name
+  on:
+    branch: master
+  access_key_id: 
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY

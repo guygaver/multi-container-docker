@@ -1,0 +1,29 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  
+  "containerDefinitions": [{
+    "name": "fibonacci-client",
+    "image": "guygaver/fibonacci-react-client",
+    "hostname": "client",
+    "essential": false
+  }, {
+    "name": "fibonacci-api",
+    "image": "guygaver/fibonacci-node-server",
+    "hostname": "api",
+    "essential": false 
+  }, {
+    "name": "fibonacci-worker",
+    "image": "guygaver/fibonacci-redis-worker",
+    "hostname": "worker",
+    "essential": false
+  }, {
+    "name": "fibonacci-nginx",
+    "image": "guygaver/fibonacci-nginx",
+    "essential": true,
+    "portMappings": [{
+      "hostPort": 80,
+      "containerPort": 80
+    }],
+    "links": ["fibonacci-client", "fibonacci-api"]
+  }]
+}
