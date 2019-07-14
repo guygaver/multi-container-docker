@@ -5,21 +5,25 @@
     "name": "fibonacci-client",
     "image": "guygaver/fibonacci-react-client",
     "hostname": "client",
-    "essential": false
+    "essential": false,
+    "memory": 128
   }, {
     "name": "fibonacci-api",
     "image": "guygaver/fibonacci-node-server",
     "hostname": "api",
-    "essential": false 
+    "essential": false,
+    "memory": 128
   }, {
     "name": "fibonacci-worker",
     "image": "guygaver/fibonacci-redis-worker",
     "hostname": "worker",
-    "essential": false
+    "essential": false,
+    "memory": 128
   }, {
     "name": "fibonacci-nginx",
     "image": "guygaver/fibonacci-nginx",
     "essential": true,
+    "memory": 128,
     "portMappings": [{
       "hostPort": 80,
       "containerPort": 80
